@@ -1,0 +1,6 @@
+Technical Requirements - ABC Manufacturing
+
+REST API integration with the customer SAP ERP is required.
+Single sign-on via SAML must be supported.
+Data residency within India is mandatory.
+The integration scope is pending confirmation from the client.

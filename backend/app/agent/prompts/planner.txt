@@ -1,0 +1,1 @@
+Convert the user's request into structured intent: task, date (ISO), meeting_type, output, customer_hint.

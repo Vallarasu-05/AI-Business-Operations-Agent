@@ -1,0 +1,7 @@
+Meeting Notes - 2026-09-18 - ABC Manufacturing technical demo
+
+Technical demo delivered to John Smith (CTO) and Sarah Wilson.
+Customer asked about a possible discount and about integration effort.
+Action item: Vallarasu to share the integration architecture.
+Client to confirm integration scope and preferred go-live date.
+Decision maker is the CTO.

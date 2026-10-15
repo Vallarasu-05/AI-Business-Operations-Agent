@@ -1,0 +1,85 @@
+{
+  "name": "AI Ops Agent - calendar_lookup",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "id": "3804b11a-0a4b-4f84-afe4-a20c41f48de0",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "7259ea3a-4a51-4b9d-abee-ca5c2705cadc",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "calendar-lookup",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "add07aa9-30fc-4636-ba8c-04807c48a8c9",
+      "name": "Google Calendar",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        260,
+        0
+      ],
+      "parameters": {
+        "resource": "event",
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "mode": "id",
+          "value": "primary"
+        },
+        "returnAll": false,
+        "limit": 50
+      }
+    },
+    {
+      "id": "0294f672-feb4-4d3e-b51b-a5d6e4b27d28",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        0
+      ],
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

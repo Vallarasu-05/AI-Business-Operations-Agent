@@ -1,0 +1,2 @@
+Write a professional sales meeting briefing: summary, deal, previous discussions, open issues, concerns,
+pending decisions, risks, conflicts, recommended topics with a suggested question for each. Cite evidence ids.

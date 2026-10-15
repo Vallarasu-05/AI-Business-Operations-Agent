@@ -1,0 +1,5 @@
+Proposal: Analytics Suite for XYZ Technologies Ltd
+
+Total price: ₹9,00,000 (INR).
+Implementation timeline: 6 weeks.
+SSO integration is included.

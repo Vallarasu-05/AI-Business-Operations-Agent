@@ -1,0 +1,3 @@
+# Optional: real embeddings + Qdrant (the default keyword retriever needs none of this)
+sentence-transformers
+qdrant-client

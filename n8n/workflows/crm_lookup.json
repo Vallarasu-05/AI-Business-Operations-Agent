@@ -1,0 +1,79 @@
+{
+  "name": "AI Ops Agent - crm_lookup",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "id": "629a009e-6467-46d8-a7eb-34b68d5fdb8b",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "46a1fd2b-6c88-4091-a178-0ab718a6c16f",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "crm-lookup",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "2dfd81f9-fb7c-4974-9b45-9c0b0fc3b9e2",
+      "name": "HubSpot",
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 2,
+      "position": [
+        260,
+        0
+      ],
+      "parameters": {
+        "resource": "company",
+        "operation": "search",
+        "additionalFields": {}
+      }
+    },
+    {
+      "id": "f7e7514a-203b-4c81-a072-aac44905c360",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        0
+      ],
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

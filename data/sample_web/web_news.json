@@ -1,0 +1,10 @@
+{"12345": [
+ {"title": "ABC Manufacturing announces plant automation programme", "date": "2026-09-10",
+  "url": "https://example.com/abc-automation",
+  "snippet": "ABC Manufacturing plans to automate operations across its plants over the next two years."},
+ {"title": "ABC Manufacturing appoints new Chief Operating Officer", "date": "2026-08-20",
+  "url": "https://example.com/abc-coo",
+  "snippet": "The company appointed a new COO to lead operational transformation."}],
+ "67890": [
+ {"title": "XYZ Technologies raises growth funding", "date": "2026-09-01",
+  "url": "https://example.com/xyz-funding", "snippet": "XYZ Technologies closed a new funding round."}]}

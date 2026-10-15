@@ -1,0 +1,78 @@
+{
+  "name": "AI Ops Agent - sales_sheet",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "id": "6077b395-9bcb-4ac3-be03-976a7526ce63",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "e59fa9a3-3280-4426-9b65-d2771d933c5c",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "sales-sheet",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "f24ebbdc-df8d-4ed5-954f-1b2269e42a59",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        260,
+        0
+      ],
+      "parameters": {
+        "resource": "sheet",
+        "operation": "read"
+      }
+    },
+    {
+      "id": "9886062c-ffdd-4300-b125-45b8f3b72b65",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        0
+      ],
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "name": "AI Ops Agent - approval_workflow",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "id": "8b50769d-66e4-47d8-ba74-77f558c64011",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "55caa713-6b40-450a-8ed0-e75763a55a86",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "approval",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "09fdf9f6-2fc0-4a8e-b3e8-233af9f9f184",
+      "name": "Gmail Send and Wait",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        260,
+        0
+      ],
+      "parameters": {
+        "resource": "message",
+        "operation": "sendAndWait",
+        "sendTo": "={{ $json.body.to[0] }}",
+        "subject": "={{ $json.body.subject }}",
+        "message": "={{ $json.body.body }}",
+        "approvalOptions": {
+          "values": {}
+        }
+      }
+    },
+    {
+      "id": "b22c30f7-fc29-4b04-abd2-b07fa22b082b",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        0
+      ],
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Gmail Send and Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail Send and Wait": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+Proposal: AI Operations Platform for ABC Manufacturing Pvt Ltd
+
+Scope: Deployment of the AI Operations Platform across three plants.
+Total price: ₹18,00,000 (INR), inclusive of implementation.
+Implementation timeline: 12 weeks from contract signature.
+Deployment options: private cloud or SaaS.
+Payment terms: 30% advance, 70% on go-live.

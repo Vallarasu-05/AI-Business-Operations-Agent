@@ -1,0 +1,22 @@
+{"companies": [
+ {"id": "12345", "name": "ABC Manufacturing Pvt Ltd",
+  "aliases": ["ABC Corporation", "ABC Corp", "ABC Manufacturing"],
+  "domain": "abcmfg.com", "industry": "Manufacturing", "employees": 4200,
+  "contacts": [
+   {"id": "c1", "name": "John Smith", "email": "john.smith@abcmfg.com", "role": "CTO"},
+   {"id": "c2", "name": "Sarah Wilson", "email": "sarah.wilson@abcmfg.com", "role": "Procurement Head"}],
+  "deals": [{"id": "deal_987", "name": "AI Operations Platform", "amount": 1800000,
+             "currency": "INR", "stage": "Negotiation", "close_date": "2026-10-20", "probability": 0.7}],
+  "tickets": [{"id": "t_551", "title": "API integration issue", "priority": "High", "status": "Open"}],
+  "activities": [
+   {"id": "a1", "type": "call", "date": "2026-09-18", "note": "Technical demo delivered to John Smith; ERP integration questions raised."},
+   {"id": "a2", "type": "note", "date": "2026-09-25", "note": "Customer prefers private cloud deployment. Decision maker is the CTO."}]},
+ {"id": "67890", "name": "XYZ Technologies Ltd",
+  "aliases": ["XYZ Technologies", "XYZ Ltd"],
+  "domain": "xyztech.io", "industry": "Software", "employees": 850,
+  "contacts": [{"id": "c3", "name": "Priya Raman", "email": "priya@xyztech.io", "role": "VP Engineering"}],
+  "deals": [{"id": "deal_410", "name": "Analytics Suite", "amount": 900000, "currency": "INR",
+             "stage": "Proposal", "close_date": "2026-11-10", "probability": 0.5}],
+  "tickets": [],
+  "activities": [{"id": "a3", "type": "email", "date": "2026-09-27", "note": "Sent analytics proposal to Priya Raman."}]}
+]}

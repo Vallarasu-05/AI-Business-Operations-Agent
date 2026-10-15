@@ -1,0 +1,81 @@
+{
+  "name": "AI Ops Agent - meeting_trigger",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "id": "ec2941e1-2597-4f0a-a567-7145dfe5727a",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "d539e36b-9808-4f1a-b066-b08b01826e90",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "meeting-trigger",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "793a3959-52f9-48f8-ab74-44519460904d",
+      "name": "HTTP Request to FastAPI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/api/agent/run",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({request: $json.body.request}) }}"
+      }
+    },
+    {
+      "id": "e8d1687e-0db5-452e-bbe2-28a62e098a88",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        0
+      ],
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request to FastAPI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request to FastAPI": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

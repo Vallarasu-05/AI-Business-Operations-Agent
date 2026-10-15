@@ -1,0 +1,13 @@
+[
+ {"event_id": "evt_abc_001", "title": "ABC Corporation - Sales Meeting", "offset_days": 1,
+  "start": "10:00", "end": "11:00", "location": "Google Meet",
+  "attendees": [
+   {"name": "John Smith", "email": "john.smith@abcmfg.com"},
+   {"name": "Sarah Wilson", "email": "sarah.wilson@abcmfg.com"},
+   {"name": "Vallarasu", "email": "vallarasu@mycompany.com"}]},
+ {"event_id": "evt_xyz_001", "title": "XYZ Technologies - Product Discussion", "offset_days": 1,
+  "start": "14:00", "end": "15:00", "location": "Zoom",
+  "attendees": [
+   {"name": "Priya Raman", "email": "priya@xyztech.io"},
+   {"name": "Vallarasu", "email": "vallarasu@mycompany.com"}]}
+]

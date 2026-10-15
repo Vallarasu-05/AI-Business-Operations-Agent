@@ -1,0 +1,83 @@
+{
+  "name": "AI Ops Agent - gmail_research",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "id": "0f8f6efc-fb42-4c6b-9730-dab736ebeb77",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "f63032c7-b05e-4cf7-b7ca-14441ba90003",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "gmail-research",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "e2b7dc91-187f-4262-bf19-7ae64d3e7cdd",
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        260,
+        0
+      ],
+      "parameters": {
+        "resource": "message",
+        "operation": "getAll",
+        "returnAll": false,
+        "limit": 20,
+        "filters": {
+          "q": "={{ 'from:' + $json.body.email + ' OR to:' + $json.body.email }}"
+        }
+      }
+    },
+    {
+      "id": "0703f550-10a4-4f1b-b38e-8700371fbe60",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        0
+      ],
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

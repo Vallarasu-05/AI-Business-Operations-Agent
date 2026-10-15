@@ -1,0 +1,81 @@
+{
+  "name": "AI Ops Agent - briefing_delivery",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "id": "d1b06d22-519a-45c2-84e4-fd13ea112d36",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "4f025bba-df76-4663-b16d-5d2be77eeb25",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "briefing-delivery",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "d54b1d73-47ab-42f0-9259-1d93eed5cac5",
+      "name": "Gmail Send",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        260,
+        0
+      ],
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $json.body.to[0] }}",
+        "subject": "={{ $json.body.subject }}",
+        "message": "={{ $json.body.body }}"
+      }
+    },
+    {
+      "id": "0a99b6ba-780f-4a7c-88d4-487bfc0ab6cc",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        0
+      ],
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Gmail Send",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail Send": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

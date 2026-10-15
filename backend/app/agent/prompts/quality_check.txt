@@ -1,0 +1,2 @@
+Check every figure and claim in the briefing against the evidence list. Report unsupported claims,
+missing conflicts, and missing sources.
